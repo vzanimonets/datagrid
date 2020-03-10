@@ -17,13 +17,16 @@ class Table extends React.Component {
     const { getDataAction } = this.props;
     getDataAction(10000);
   }
+  setSort = value => {
+    this.props.sortData(value);
+  };
 
   //   setFilter = value => this.props.filterMovies(value);
 
   //   setFilterBy = value => this.props.filterMoviesBy(value);
-  setSort = value => console.log("data sorting");
-  columnsOut = ["Name", "e-mail", "Phone"].map(item => {
-    return <Header column={item} onClick={this.setSort} />;
+
+  columnsOut = ["Name", "e-mail", "Phone"].map((item, key) => {
+    return <Header key={key + item} column={item} fnClick={this.setSort} />;
   });
   render() {
     const { items, status } = this.props;
@@ -58,10 +61,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDataAction: bindActionCreators(actions.getDataAction, dispatch)
+    getDataAction: bindActionCreators(actions.getDataAction, dispatch),
     // filterMovies: bindActionCreators(actions.filterMovies, dispatch),
     // filterMoviesBy: bindActionCreators(actions.filterMoviesBy, dispatch),
-    // sortMovies: bindActionCreators(actions.sortMovies, dispatch)
+    sortData: bindActionCreators(actions.sortData, dispatch)
   };
 };
 

@@ -9,6 +9,14 @@
 }
 .columns>div{
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.columns .table-column-sorter{
+    display: flex;
+    flex-direction: column;
 }
 .content{
     position: relative;
