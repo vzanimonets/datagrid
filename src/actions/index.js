@@ -9,7 +9,7 @@ export const getDataAction = (count = 10) => async dispatch => {
       const person = getPersonData();
       data.push(person);
     }
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     dispatch(requestFinished(data));
   } catch (error) {
     throw error;
@@ -21,4 +21,11 @@ const requestFinished = data => ({
 });
 
 const requestStart = { type: actionTypes.REQUEST_REQUESTED };
+
+export function sortData(sortType) {
+  return {
+    type: actionTypes.SORT_DATA,
+    payload: sortType
+  };
+}
 export default {};

@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
       return { ...state, status: "waiting" };
     case actionTypes.REQUEST_RECEIVED:
       return { data: [...action.payload], status: "received" };
+    case actionTypes.SORT_DATA:
     default:
       return state;
   }
