@@ -5,7 +5,7 @@ export const getDataAction = (count = 10) => async dispatch => {
   try {
     dispatch(requestStart);
     let data = [];
-    for (let i = 0; i <= count; i++) {
+    for (let i = 0; i < count; i++) {
       const person = getPersonData();
       data.push(person);
     }
@@ -28,4 +28,3 @@ export function sortData(sortType) {
     payload: sortType
   };
 }
-export default {};

@@ -1,42 +1,72 @@
-.table{
-
+.table {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  position: relative;
+  z-index: 0;
+  clear: both;
+  background: #fff;
 }
-.columns{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    background-color: #fafafa;
+.columns {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: #fafafa;
 }
-.columns>div{
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+.columns > div {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  text-align: left;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
 }
-.columns .table-column-sorter{
-    display: flex;
-    flex-direction: column;
+.columns .table-column-sorter {
+  display: flex;
+  flex-direction: column;
 }
-.content{
-    position: relative;
+.columns .table-column-sorter span:first-child{
+    height: 10px;
 }
-.content .spinner{
-    position: absolute;
-    left: 50%;
-    top: 200px;
+.columns .table-column-sorter span{
+    height: 16px;
 }
-.content .row{
-    display: flex;
-    flex-basis: 100%;
-    justify-content: space-between;
-    border: 1px solid transparent;
+.content {
+  position: relative;
+  height: 300px;
+  overflow-y: scroll;
 }
-.content .row:hover{
-    border-color: turquoise;
+.content .inner {
+  position: absolute;
+  width: 100%;
 }
-.content .cell{
-    padding: 5px;
-    width: 100%;
-    text-align: left;
+.content .spinner {
+  position: absolute;
+  left: 50%;
+  top: 200px;
+}
+.content .row {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+  border: 1px solid transparent;
+}
+.content .row:hover {
+  border-color: turquoise;
+}
+.content .cell {
+  padding: 5px;
+  width: 100%;
+  text-align: left;
 }

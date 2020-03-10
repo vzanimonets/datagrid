@@ -1,14 +1,13 @@
 import React from "react";
 const Header = ({ column, fnClick }) => {
   return (
-    <div>
+    <div className="cell">
       <span>{column}</span>
       <span className="table-column-sorter">
         <span onClick={() => fnClick("asc")}>
           <svg
             viewBox="0 0 1024 1024"
             focusable="false"
-            class=""
             data-icon="caret-up"
             width="1em"
             height="1em"
@@ -22,7 +21,6 @@ const Header = ({ column, fnClick }) => {
           <svg
             viewBox="0 0 1024 1024"
             focusable="false"
-            class=""
             data-icon="caret-down"
             width="1em"
             height="1em"

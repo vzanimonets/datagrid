@@ -42,11 +42,6 @@ class Table extends React.Component {
             )}
           </div>
         </div>
-        {/* <SearchPanel
-          filterMoviesBy={this.setFilterBy}
-          filterMovies={this.setFilter}
-        />
-        <SortingPanel setSortMovies={this.setSortMovies} /> */}
       </React.Fragment>
     );
   }

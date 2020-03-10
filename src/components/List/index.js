@@ -9,7 +9,7 @@ function List(props) {
     return <Row {...RowProps} />;
   });
 
-  return <div className="content">{itemsList}</div>;
+  return <div className="inner">{itemsList}</div>;
 }
 
 List.propTypes = {
