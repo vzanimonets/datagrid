@@ -1,11 +1,13 @@
 import React from "react";
 import List from "../List";
+import Header from "../Header";
 // import SortingPanel from "../SortingPanel/SortingPanel";
 // import SearchPanel from "../SearchPanel/SearchPanel";
 
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import "./table.css";
 
 class Browse extends React.Component {
   //   constructor(props) {
@@ -13,24 +15,35 @@ class Browse extends React.Component {
   //   }
   componentDidMount() {
     const { getDataAction } = this.props;
-    getDataAction();
+    getDataAction(10000);
   }
 
   //   setFilter = value => this.props.filterMovies(value);
 
   //   setFilterBy = value => this.props.filterMoviesBy(value);
-  //   setSortMovies = value => this.props.sortMovies(value);
-
+  setSort = value => console.log("data sorting");
+  columnsOut = ["field 1", "field 2", "field 3"].map(item => {
+    return <Header column={item} onClick={this.setSort} />;
+  });
   render() {
     const { items, status } = this.props;
     return (
       <React.Fragment>
+        <div className="table">
+          <div className="columns">{this.columnsOut}</div>
+          <div className="content">
+            {status === "received" ? (
+              <List items={items} />
+            ) : (
+              "fetching data..."
+            )}
+          </div>
+        </div>
         {/* <SearchPanel
           filterMoviesBy={this.setFilterBy}
           filterMovies={this.setFilter}
         />
         <SortingPanel setSortMovies={this.setSortMovies} /> */}
-        {status === "received" ? <List items={items} /> : "waiting..."}
       </React.Fragment>
     );
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import Row from "../Row";
 import PropTypes from "prop-types";
-//import style from "./MoviesList.css";
 
 function List(props) {
   const { items } = props;
@@ -10,7 +9,7 @@ function List(props) {
     return <Row {...RowProps} />;
   });
 
-  return <div className="table">{itemsList}</div>;
+  return <div className="content">{itemsList}</div>;
 }
 
 List.propTypes = {

@@ -8,10 +8,9 @@ const Row = ({ item }) => {
   };
   return (
     <div className="row" style={style}>
-      <div>{item.name}</div>
-      <div>{item.website}</div>
-      <div>{item.email}</div>
-      <div>{item.phone}</div>
+      <div className="cell">{item.name}</div>
+      <div className="cell">{item.email}</div>
+      <div className="cell">{item.phone}</div>
     </div>
   );
 };
