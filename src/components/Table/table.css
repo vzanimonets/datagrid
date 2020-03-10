@@ -1,0 +1,34 @@
+.table{
+
+}
+.columns{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #fafafa;
+}
+.columns>div{
+    cursor: pointer;
+}
+.content{
+    position: relative;
+}
+.content .spinner{
+    position: absolute;
+    left: 50%;
+    top: 200px;
+}
+.content .row{
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    border: 1px solid transparent;
+}
+.content .row:hover{
+    border-color: turquoise;
+}
+.content .cell{
+    padding: 5px;
+    width: 100%;
+    text-align: left;
+}

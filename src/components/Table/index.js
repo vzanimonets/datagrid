@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./table.css";
 
-class Browse extends React.Component {
+class Table extends React.Component {
   //   constructor(props) {
   //     super(props);
   //   }
@@ -22,7 +22,7 @@ class Browse extends React.Component {
 
   //   setFilterBy = value => this.props.filterMoviesBy(value);
   setSort = value => console.log("data sorting");
-  columnsOut = ["field 1", "field 2", "field 3"].map(item => {
+  columnsOut = ["Name", "e-mail", "Phone"].map(item => {
     return <Header column={item} onClick={this.setSort} />;
   });
   render() {
@@ -35,7 +35,7 @@ class Browse extends React.Component {
             {status === "received" ? (
               <List items={items} />
             ) : (
-              "fetching data..."
+              <span className="spinner">fetching data...</span>
             )}
           </div>
         </div>
@@ -65,4 +65,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Browse);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
