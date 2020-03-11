@@ -1,16 +1,12 @@
 import * as actionTypes from "../constants/actionTypes";
-import { getPersonData } from "../utils/index";
+import { getPersonData } from "../utils";
 
-export const getDataAction = (count = 10) => async dispatch => {
+export const getDataAction = n => async dispatch => {
   try {
     dispatch(requestStart);
-    let data = [];
-    for (let i = 0; i < count; i++) {
-      const person = getPersonData();
-      data.push(person);
-    }
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    dispatch(requestFinished(data));
+    const data = await getPersonData(n);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await dispatch(requestFinished(data));
   } catch (error) {
     throw error;
   }

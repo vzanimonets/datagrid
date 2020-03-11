@@ -53,8 +53,8 @@
 }
 .content .spinner {
   position: absolute;
-  left: 50%;
-  top: 200px;
+  left: 40%;
+  top: 45%;
 }
 .content .row {
   display: flex;

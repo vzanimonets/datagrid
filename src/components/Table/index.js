@@ -1,6 +1,7 @@
 import React from "react";
 import List from "../List";
 import Header from "../Header";
+
 // import SortingPanel from "../SortingPanel/SortingPanel";
 // import SearchPanel from "../SearchPanel/SearchPanel";
 
@@ -15,7 +16,7 @@ class Table extends React.Component {
   //   }
   componentDidMount() {
     const { getDataAction } = this.props;
-    getDataAction(10000);
+    getDataAction(1000);
   }
   setSort = value => {
     this.props.sortData(value);
@@ -25,15 +26,44 @@ class Table extends React.Component {
 
   //   setFilterBy = value => this.props.filterMoviesBy(value);
 
-  columnsOut = ["Name", "e-mail", "Phone"].map((item, key) => {
-    return <Header key={key + item} column={item} fnClick={this.setSort} />;
+  columnsOut = [
+    { name: "Name", sortKey: "name" },
+    { name: "e-mail", sortKey: "email" },
+    { name: "Phone", sortKey: "phone" }
+  ].map((item, key) => {
+    return (
+      <Header
+        key={key + item}
+        column={item}
+        sort={this.props.sort}
+        fnClick={this.setSort}
+      />
+    );
   });
   render() {
-    const { items, status } = this.props;
+    const { items, status, sort } = this.props;
+    const style = {
+      backgroundColor: "#FAFAFA",
+      bordeTop: "1px solid",
+      margin: 0
+    };
     return (
       <React.Fragment>
         <div className="table">
-          <div className="columns">{this.columnsOut}</div>
+          <div className="columns">
+            {[
+              { name: "Name", sortKey: "name" },
+              { name: "e-mail", sortKey: "email" },
+              { name: "Phone", sortKey: "phone" }
+            ].map((item, key) => (
+              <Header
+                key={key + item}
+                column={item}
+                sort={sort}
+                fnClick={this.setSort}
+              />
+            ))}
+          </div>
           <div className="content">
             {status === "received" ? (
               <List items={items} />
@@ -41,6 +71,10 @@ class Table extends React.Component {
               <span className="spinner">fetching data...</span>
             )}
           </div>
+          <p style={style}>
+            <b>total:</b> {items.length} <b>sort:</b>
+            {sort.sortKey}:{sort.dir}
+          </p>
         </div>
       </React.Fragment>
     );
@@ -49,7 +83,8 @@ class Table extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    items: state.dataReducer.data, //state.request.data,
+    items: state.dataReducer.data,
+    sort: state.dataReducer.sort,
     status: state.dataReducer.status
   };
 }
