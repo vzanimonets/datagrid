@@ -2,7 +2,7 @@ import * as actionTypes from "../../constants/actionTypes";
 const initialState = {
   data: [],
   status: "",
-  sort: { sortKey: "name", dir: "asc" }
+  sort: { sortKey: "id", dir: "asc" }
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -17,7 +17,8 @@ export default (state = initialState, action) => {
     case actionTypes.SORT_DATA:
       return {
         ...state,
-        sort: action.payload
+        sort: action.payload,
+        data: [...action.sortData]
       };
     default:
       return state;

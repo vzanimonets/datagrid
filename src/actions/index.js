@@ -18,9 +18,12 @@ const requestFinished = data => ({
 
 const requestStart = { type: actionTypes.REQUEST_REQUESTED };
 
-export function sortData(sortType) {
-  return {
+export const sortData = sortType => async dispatch => {
+  // dispatch(requestStart);
+  const data = await getPersonData(1000, sortType.sortKey, sortType.dir);
+  await dispatch({
     type: actionTypes.SORT_DATA,
-    payload: sortType
-  };
-}
+    payload: sortType,
+    sortData: data
+  });
+};

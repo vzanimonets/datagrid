@@ -26,20 +26,6 @@ class Table extends React.Component {
 
   //   setFilterBy = value => this.props.filterMoviesBy(value);
 
-  columnsOut = [
-    { name: "Name", sortKey: "name" },
-    { name: "e-mail", sortKey: "email" },
-    { name: "Phone", sortKey: "phone" }
-  ].map((item, key) => {
-    return (
-      <Header
-        key={key + item}
-        column={item}
-        sort={this.props.sort}
-        fnClick={this.setSort}
-      />
-    );
-  });
   render() {
     const { items, status, sort } = this.props;
     const style = {
@@ -52,9 +38,11 @@ class Table extends React.Component {
         <div className="table">
           <div className="columns">
             {[
+              { name: "Id", sortKey: "id" },
               { name: "Name", sortKey: "name" },
               { name: "e-mail", sortKey: "email" },
-              { name: "Phone", sortKey: "phone" }
+              { name: "Phone", sortKey: "phone" },
+              { name: "Age", sortKey: "age" }
             ].map((item, key) => (
               <Header
                 key={key + item}
@@ -68,7 +56,7 @@ class Table extends React.Component {
             {status === "received" ? (
               <List items={items} />
             ) : (
-              <span className="spinner">fetching data...</span>
+              <span className="spinner">waiting...</span>
             )}
           </div>
           <p style={style}>

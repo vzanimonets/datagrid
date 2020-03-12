@@ -1,7 +1,11 @@
 import React from "react";
 const Header = ({ column, fnClick, sort }) => {
+  const style =
+    column.sortKey === "id" || column.sortKey === "age"
+      ? { width: "auto" }
+      : {};
   return (
-    <div className="cell">
+    <div className="cell" style={style}>
       <span>{column.name}</span>
       <span className="table-column-sorter">
         <span onClick={() => fnClick({ sortKey: column.sortKey, dir: "asc" })}>

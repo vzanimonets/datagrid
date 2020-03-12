@@ -1,20 +1,48 @@
 import { seed, name as _name, internet, phone as _phone } from "faker";
-export const getPersonData = async (n, sortKey, dir) => {
-  const data = [];
+export const getPersonData = async (n, sortKey = "id", dir) => {
   seed(1);
-  for (let i = 0; i < n; i++) {
+  const data = [];
+  for (let i = 1; i <= n; i++) {
     const person = {
+      id: i,
       name: _name.findName(),
       email: internet.email(),
-      phone: _phone.phoneNumber()
+      phone: _phone.phoneNumber(),
+      age: Math.floor(Math.random() * (60 - 16)) + 15
     };
     data.push(person);
   }
-  return await sortData(data, sortKey, dir);
+  const sorted = await dataSort(data, sortKey, dir);
+  return sorted;
 };
-const sortData = async (data, sortKey, dir) => {
-  return data.sort((a, b) => {
-    //const type = dir === "asc" ? 1 : -1;
+const dataSort = (data, sortKey, dir) => {
+  switch (sortKey) {
+    case "id":
+      return sortById(data, sortKey, dir);
+    case "name":
+      return sortByName(data, sortKey, dir);
+    case "age":
+      return sortByAge(data, sortKey, dir);
+    case "email":
+      return sortByEmail(data, sortKey, dir);
+    case "phone":
+      return sortByPhone(data, sortKey, dir);
+    default:
+      return data;
+  }
+};
+const sortById = (data, sortKey, dir) => {
+  const sorted = data.sort((a, b) => Number(a.id) - Number(b.id));
+  if (dir === "desc") return sorted.reverse();
+  return sorted;
+};
+const sortByAge = (data, sortKey, dir) => {
+  const sorted = data.sort((a, b) => Number(a.age) - Number(b.age));
+  if (dir === "desc") return sorted.reverse();
+  return sorted;
+};
+const sortByName = (data, sortKey, dir) => {
+  const sorted = data.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
     }
@@ -23,4 +51,32 @@ const sortData = async (data, sortKey, dir) => {
     }
     return 0;
   });
+  if (dir === "desc") return sorted.reverse();
+  return sorted;
+};
+const sortByEmail = (data, sortKey, dir) => {
+  const sorted = data.sort((a, b) => {
+    if (a.email > b.email) {
+      return 1;
+    }
+    if (a.email < b.email) {
+      return -1;
+    }
+    return 0;
+  });
+  if (dir === "desc") return sorted.reverse();
+  return sorted;
+};
+const sortByPhone = (data, sortKey, dir) => {
+  const sorted = data.sort((a, b) => {
+    if (a.phone > b.phone) {
+      return 1;
+    }
+    if (a.phone < b.phone) {
+      return -1;
+    }
+    return 0;
+  });
+  if (dir === "desc") return sorted.reverse();
+  return sorted;
 };
