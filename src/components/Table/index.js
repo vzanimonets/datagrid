@@ -38,7 +38,7 @@ class Table extends React.Component {
         <div className="table">
           <div className="columns">
             {[
-              { name: "Id", sortKey: "id" },
+              { name: "#", sortKey: "id" },
               { name: "Name", sortKey: "name" },
               { name: "e-mail", sortKey: "email" },
               { name: "Phone", sortKey: "phone" },
