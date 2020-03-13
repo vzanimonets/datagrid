@@ -18,8 +18,8 @@ class Table extends React.Component {
     const { getDataAction } = this.props;
     getDataAction(1000);
   }
-  setSort = value => {
-    this.props.sortData(value);
+  setSort = sortKey => {
+    this.props.sortData(sortKey);
   };
 
   //   setFilter = value => this.props.filterMovies(value);

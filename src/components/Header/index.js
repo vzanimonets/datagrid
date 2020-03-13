@@ -7,18 +7,26 @@ const Header = ({ column, fnClick, sort }) => {
     column.sortKey === "id" || column.sortKey === "age"
       ? { width: "auto" }
       : {};
+  const handleClick = (e, dir) => {
+    e.preventDefault();
+    fnClick({
+      sortKey: column.sortKey,
+      dir: dir,
+      multiple: e.ctrlKey
+    });
+  };
   return (
     <div className="cell" style={style}>
       <span>{column.name}</span>
       <span className="table-column-sorter">
-        <span onClick={() => fnClick({ sortKey: column.sortKey, dir: "asc" })}>
+        <span onClick={e => handleClick(e, "asc")}>
           <IconSortAsc
             columnSort={column.sortKey}
             currentSort={sort.sortKey}
             currentDir={sort.dir}
           />
         </span>
-        <span onClick={() => fnClick({ sortKey: column.sortKey, dir: "desc" })}>
+        <span onClick={e => handleClick(e, "desc")}>
           <IconSortDesc
             columnSort={column.sortKey}
             currentSort={sort.sortKey}
