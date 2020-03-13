@@ -1,4 +1,5 @@
 import { seed, name as _name, internet, phone as _phone } from "faker";
+import _ from "lodash";
 export const getPersonData = async (n, sortKey = "id", dir) => {
   seed(1);
   const data = [];
@@ -12,8 +13,13 @@ export const getPersonData = async (n, sortKey = "id", dir) => {
     };
     data.push(person);
   }
-  const sorted = await dataSort(data, sortKey, dir);
-  return sorted;
+  //const sorted = await dataSort(data, sortKey, dir);
+  // const sorted = _.sortBy(
+  //   data,
+  //   [item => item.name.toLowerCase(), "age"],
+  //   ["asc"]
+  // );
+  return data;
 };
 const dataSort = (data, sortKey, dir) => {
   switch (sortKey) {

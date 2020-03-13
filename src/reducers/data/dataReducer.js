@@ -2,14 +2,10 @@ import * as actionTypes from "../../constants/actionTypes";
 const initialState = {
   data: [],
   status: "",
-  sort: { sortKey: "id", dir: "asc" }
+  sort: [{ sortKey: "id", dir: "asc" }]
 };
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "SIMPLE_ACTION":
-      return {
-        result: action.payload
-      };
     case actionTypes.REQUEST_REQUESTED:
       return { ...state, status: "waiting" };
     case actionTypes.REQUEST_RECEIVED:
@@ -17,8 +13,7 @@ export default (state = initialState, action) => {
     case actionTypes.SORT_DATA:
       return {
         ...state,
-        sort: action.payload,
-        data: [...action.sortData]
+        sort: [...action.payload]
       };
     default:
       return state;
