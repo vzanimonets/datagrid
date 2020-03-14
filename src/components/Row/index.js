@@ -1,13 +1,19 @@
 import React from "react";
+const classNames = require("classnames");
 
-const Row = ({ item }) => {
-  const style = {
-    display: "flex",
-    flexBasis: "100%",
-    justifyContent: "space-between"
-  };
+const Row = ({ item, handleSelect, selected, allSelected }) => {
+  const rowClass = classNames({
+    row: true,
+    selected: selected[item.id] || allSelected
+  });
   return (
-    <div className="row" style={style}>
+    <div className={rowClass}>
+      <input
+        onChange={e => handleSelect(e)}
+        type="checkbox"
+        name={item.id}
+        checked={allSelected}
+      ></input>
       <div className="cell" style={{ width: "auto" }}>
         {item.id}
       </div>

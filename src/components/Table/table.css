@@ -13,9 +13,13 @@
   clear: both;
   background: #fff;
 }
+.table input{
+  cursor: pointer;
+}
 .columns {
   display: flex;
   justify-content: space-between;
+  align-items: center;;
   padding: 5px;
   background-color: #fafafa;
 }
@@ -60,11 +64,16 @@
   display: flex;
   flex-basis: 100%;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid transparent;
 }
 .content .row:hover {
   border-color: turquoise;
 }
+.row.selected{
+  background-color: turquoise;
+}
+
 .content .cell {
   padding: 10px;
   width: 100%;

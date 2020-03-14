@@ -11,13 +11,31 @@ import { bindActionCreators } from "redux";
 import "./table.css";
 
 class Table extends React.Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
+  constructor() {
+    super();
+
+    this.state = {
+      selected: {}
+    };
+  }
   componentDidMount() {
     const { getDataAction } = this.props;
     getDataAction(1000);
   }
+  selectAll = e => {
+    let selected = this.state.selected;
+    if (e.target.checked) {
+      selected[e.target.name] = e.target.checked;
+    } else {
+      selected = {};
+    }
+    this.setState({ selected });
+  };
+  handleSelect = e => {
+    const selected = this.state.selected;
+    selected[e.target.name] = e.target.checked;
+    this.setState({ selected });
+  };
   setSort = (multiple, sortKey) => {
     let sort = this.props.sort;
 
@@ -42,11 +60,18 @@ class Table extends React.Component {
       <React.Fragment>
         <div className="table">
           <div className="columns">
+            <input
+              type="checkbox"
+              name="allSelected"
+              className="checkboxContainer"
+              onChange={this.selectAll}
+            />
             {[
-              { name: "#", sortKey: "id" },
+              { name: "ID", sortKey: "id" },
               { name: "Name", sortKey: "name" },
               { name: "e-mail", sortKey: "email" },
               { name: "Phone", sortKey: "phone" },
+              { name: "Registration", sortKey: "date" },
               { name: "Age", sortKey: "age" }
             ].map((item, key) => (
               <Header
@@ -59,7 +84,12 @@ class Table extends React.Component {
           </div>
           <div className="content">
             {status === "received" ? (
-              <List items={items} />
+              <List
+                items={items}
+                handleSelect={this.handleSelect}
+                selected={this.state.selected}
+                allSelected={this.state.selected["allSelected"]}
+              />
             ) : (
               <span className="spinner">waiting...</span>
             )}
