@@ -18,8 +18,13 @@ class Table extends React.Component {
     const { getDataAction } = this.props;
     getDataAction(1000);
   }
-  setSort = sortKey => {
-    this.props.sortData(sortKey);
+  setSort = (multiple, sortKey) => {
+    let sort = this.props.sort;
+
+    if (multiple) {
+      sort.push(sortKey);
+    } else sort = [sortKey];
+    this.props.sortData(sort);
   };
 
   //   setFilter = value => this.props.filterMovies(value);
@@ -47,7 +52,7 @@ class Table extends React.Component {
               <Header
                 key={key + item}
                 column={item}
-                sort={sort}
+                sort={this.props.sort}
                 fnClick={this.setSort}
               />
             ))}
@@ -69,7 +74,9 @@ class Table extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+  console.log(ownProps);
+
   return {
     items: state.dataReducer.data,
     sort: state.dataReducer.sort,

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import * as actionTypes from "../../constants/actionTypes";
 const initialState = {
   data: [],
@@ -11,11 +12,33 @@ export default (state = initialState, action) => {
     case actionTypes.REQUEST_RECEIVED:
       return { ...state, data: [...action.payload], status: "received" };
     case actionTypes.SORT_DATA:
+      console.log(action.payload);
       return {
         ...state,
-        sort: [...action.payload]
+        sort: [...action.payload],
+        data: dataSort(state.data, action.payload)
       };
     default:
       return state;
   }
+};
+// selector
+function dataSort(data, sortKey) {
+  const [sort] = sortKey;
+  const field = sort.sortKey;
+  const dir = sort.dir;
+  return _.orderBy(data, [item => typeCheck(item[field]), field], dir);
+}
+const typeCheck = value => {
+  switch (typeof value) {
+    case "string":
+      console.log(typeof value);
+      return value.toLowerCase();
+    case "number":
+      console.log(typeof value);
+      return Number(value);
+    default:
+      return value;
+  }
+  //  item[field].toLowerCase()
 };
