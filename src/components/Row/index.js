@@ -20,6 +20,7 @@ const Row = ({ item, handleSelect, selected, allSelected }) => {
       <div className="cell">{item.name}</div>
       <div className="cell">{item.email}</div>
       <div className="cell">{item.phone}</div>
+      <div className="cell">{item.date.toLocaleString()}</div>
       <div className="cell" style={{ width: "auto" }}>
         {item.age}
       </div>

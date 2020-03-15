@@ -104,9 +104,7 @@ class Table extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  console.log(ownProps);
-
+function mapStateToProps(state) {
   return {
     items: state.dataReducer.data,
     sort: state.dataReducer.sort,

@@ -13,13 +13,13 @@
   clear: both;
   background: #fff;
 }
-.table input{
+.table input {
   cursor: pointer;
 }
 .columns {
   display: flex;
   justify-content: space-between;
-  align-items: center;;
+  align-items: center;
   padding: 5px;
   background-color: #fafafa;
 }
@@ -40,11 +40,11 @@
   display: flex;
   flex-direction: column;
 }
-.columns .table-column-sorter span:first-child{
-    height: 10px;
+.columns .table-column-sorter span:first-child {
+  height: 10px;
 }
-.columns .table-column-sorter span{
-    height: 16px;
+.columns .table-column-sorter span {
+  height: 16px;
 }
 .content {
   position: relative;
@@ -70,7 +70,7 @@
 .content .row:hover {
   border-color: turquoise;
 }
-.row.selected{
+.row.selected {
   background-color: turquoise;
 }
 
@@ -78,4 +78,11 @@
   padding: 10px;
   width: 100%;
   text-align: left;
+  text-overflow: ellipsis
+}
+.search {
+  width: 60%;
+  padding: 2px 0;
+  margin: 10px auto;
+  display: block;
 }

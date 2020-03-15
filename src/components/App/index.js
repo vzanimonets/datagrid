@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import InputFilter from "../InputFilter";
 import Table from "../Table";
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
+        <InputFilter />
         <Table />
       </div>
     );

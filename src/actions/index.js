@@ -26,3 +26,9 @@ export const sortData = sortType => dispatch => {
     payload: sortType
   });
 };
+
+export const filterData = value => dispatch =>
+  dispatch({
+    type: actionTypes.FILTER_DATA,
+    payload: value
+  });
