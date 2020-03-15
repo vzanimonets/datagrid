@@ -2,9 +2,6 @@ import React from "react";
 import List from "../List";
 import Header from "../Header";
 
-// import SortingPanel from "../SortingPanel/SortingPanel";
-// import SearchPanel from "../SearchPanel/SearchPanel";
-
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -45,12 +42,8 @@ class Table extends React.Component {
     this.props.sortData(sort);
   };
 
-  //   setFilter = value => this.props.filterMovies(value);
-
-  //   setFilterBy = value => this.props.filterMoviesBy(value);
-
   render() {
-    const { items, status, sort } = this.props;
+    const { items, status } = this.props;
     const style = {
       backgroundColor: "#FAFAFA",
       bordeTop: "1px solid",
@@ -95,8 +88,7 @@ class Table extends React.Component {
             )}
           </div>
           <p style={style}>
-            <b>total:</b> {items.length} <b>sort:</b>
-            {sort.sortKey}:{sort.dir}
+            <b>total:</b> {items.length}
           </p>
         </div>
       </React.Fragment>
@@ -115,8 +107,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getDataAction: bindActionCreators(actions.getDataAction, dispatch),
-    // filterMovies: bindActionCreators(actions.filterMovies, dispatch),
-    // filterMoviesBy: bindActionCreators(actions.filterMoviesBy, dispatch),
     sortData: bindActionCreators(actions.sortData, dispatch)
   };
 };
